@@ -4,10 +4,16 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _MyApp();
+  }
+}
+
+class _MyApp extends State<MyApp> {
   var switchValue = false;
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,12 +28,17 @@ class MyApp extends StatelessWidget {
           child: Switch(
             value: switchValue,
             onChanged: (value) {
-              switchValue = value;
-            }),
+              setState(() {
+                print(value);
+                switchValue = value;
+              });
+            },
+          ),
         ),
-      ));
-
+      ),
+    );
   }
+
 }
 
 
